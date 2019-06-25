@@ -1,0 +1,48 @@
+﻿{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="description" content="Cadastrar nova oportunidade" />
+		<meta name="keywords" content="cadastro, rh, curriculo, oportunidades, vagas, emprego, ti, tecnologia, programador" />
+		<meta name="robots" content="index,follow" />
+		<link rel="icon" href="../img/career.ico" />
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+		<title>Nova oportunidade</title>
+	</head>
+	<body>
+		<header class="header">
+			<nav>
+				<a href="{% url 'homeRecrutador' %}">Home</a>
+				<a href="{% url 'listaDeOportunidades' %}">Oportunidades</a>
+				<a href="{% url 'cadastrarCurriculo' %}">Cadastro de curriculo</a>
+				{% if request.user.is_superuser %}
+					<a href="{% url 'cadastroOportunidade' %}">Cadastro de oportunidade</a>
+				{%endif%}
+				<a href="{% url 'dicas' %}">Dicas</a>
+				{% if request.user.is_authenticated  %}
+					<a href="{% url 'logout' %}">Sair</a>
+				{%else%}
+					<a href="{% url 'signup' %}">Cadastre-se</a>
+					<a href="{% url 'login' %}">Login</a>
+				{%endif%}
+			</nav>
+		</header>
+		<div>
+			<form class="form oparea" name="formoportunidade" method="POST"> 
+				{% csrf_token %}
+				<p>Nome: {{cadastro.nome}}</p>
+				<p>Local: {{cadastro.local}}</p>
+				<p>Descrição: {{cadastro.descricao}}</p>
+				<p>Atribuição: {{cadastro.atribuicao}}</p>
+				<button type="submit">Enviar</button>
+			</form>
+		</div>
+		<footer>
+			<a href="{% url 'contato' %}">Dúvidas e Sugestões</a>
+		</footer>
+	</body>
+</html>

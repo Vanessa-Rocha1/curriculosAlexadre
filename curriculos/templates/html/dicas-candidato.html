@@ -1,0 +1,103 @@
+﻿{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="description" content="Página de dicas" />
+		<meta name="keywords" content="dicas, rh, curriculo, oportunidades, vagas, emprego, ti, tecnologia, programador" />
+		<meta name="robots" content="index,follow" />
+		<link rel="icon" href="../img/career.ico" />
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+		<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+		<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+		<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+		<script src="{% static 'js/global.js' %}"></script>
+		<title>Dicas</title>
+	</head>
+	<body>
+		<header class="header">
+			<nav>
+				<a href="{% url 'homeRecrutador' %}">Home</a>
+				<a href="{% url 'listaDeOportunidades' %}">Oportunidades</a>
+				<a href="{% url 'cadastrarCurriculo' %}">Cadastro de curriculo</a>
+				{% if request.user.is_superuser %}
+					<a href="{% url 'cadastroOportunidade' %}">Cadastro de oportunidade</a>
+				{%endif%}
+				<a href="{% url 'dicas' %}">Dicas</a>
+				{% if request.user.is_authenticated  %}
+					<a href="{% url 'logout' %}">Sair</a>
+				{%else%}
+					<a href="{% url 'signup' %}">Cadastre-se</a>
+					<a href="{% url 'login' %}">Login</a>
+				{%endif%}
+			</nav>
+		</header>
+		<div class="dicasarea">
+		<article>
+  			<div class="title">Dicas</div>
+  			<p>
+  				Tudo o que você precisa saber para conquistar um bom lugar no mercado de trabalho ou aquela tão sonhada promoção. Confira dicas de carreira, para entrevista de emprego, dinâmica de grupo, como fazer o seu currículo, etiqueta no trabalho e muito mais!
+  			</p>
+		</article>
+		<section>
+			<a href="#" id = "dica1"><i class='fas fa-angle-down'></i></a><span> </span><strong>Dicas para um bom <em>Curriculum vitæ</em></strong><br />
+			<div id = "hide1" class="hide">
+				<ol>
+					<li>Reforce suas qualidades e pontos fortes.</li>
+					<li>Liste as experiências profissionais mais recentes.</li>
+					<li>Seja sincero.</li>
+					<li>Seja objetivo.</li>
+					<li>Faça uma revisão antes de enviar.</li>
+				</ol>
+			</div>
+			<a href="#" id = "dica2"><i class='fas fa-angle-down'></i></a><span> </span><strong>Dicas para conseguir um emprego</strong><br />
+			<div id = "hide2" class="hide">
+				<ul>
+					<li>Pesquise sua faixa salarial.</li>
+					<li>Entre em contato com comunidades profissionais.</li>
+					<li>Faça uma lista das empresas dos sonhos.</li>
+					<li>Não minta de forma alguma.</li>
+					<li>Busque sua rede de contatos.</li>
+					<li>Participe de eventos.</li>
+				</ul>
+			</div>
+		</section>
+		<div class="title">Cargos em destaque</div>
+		<div>
+			<table>
+				<thead>
+					<tr>
+						<th>Nome</th>
+						<th>Local</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Especialista em Cloud</td>
+						<td>Rio de Janeiro</td>
+					</tr>
+					<tr>
+						<td>Dev Ops</td>
+						<td>São Paulo</td>
+					</tr>
+					<tr>
+						<td>Desenvolvedor Fullstack</td>
+						<td>Joinville</td>
+					</tr>
+					<tr>
+						<td>Analista de Negócios</td>
+						<td>São Paulo</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<div class="link"><a href="https://www.vagas.com.br/profissoes/c/dicas/">Mais dicas</a></div>
+		<div class="link"><a href="https://www.vagas.com.br/profissoes/dicas/quer-saber-como-conseguir-um-emprego/">Quer saber como conseguir um emprego?</a></div>
+		</div>
+		<footer>
+			<a href="{% url 'contato' %}">Dúvidas e Sugestões</a>
+		</footer>
+	</body>
+</html>

@@ -1,0 +1,47 @@
+﻿{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="description" content="Página principal" />
+		<meta name="keywords" content="home, rh, curriculo, oportunidades, vagas, emprego, ti, tecnologia, programador" />
+		<meta name="robots" content="index,follow" />
+		<link rel="icon" href="../img/career.ico" />
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+		<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+		<script src="{% static 'js/global.js' %}"></script>
+		<title>Home</title>
+	</head>
+	<body>
+		<header class="header">
+			<nav>
+				<a href="{% url 'homeRecrutador' %}">Home</a>
+				<a href="{% url 'listaDeOportunidades' %}">Oportunidades</a>
+				<a href="{% url 'cadastrarCurriculo' %}">Cadastro de curriculo</a>
+				{% if request.user.is_superuser %}
+					<a href="{% url 'cadastroOportunidade' %}">Cadastro de oportunidade</a>
+				{%endif%}
+				<a href="{% url 'dicas' %}">Dicas</a>
+				{% if request.user.is_authenticated  %}
+					<a href="{% url 'logout' %}">Sair</a>
+				{%else%}
+					<a href="{% url 'signup' %}">Cadastre-se</a>
+					<a href="{% url 'login' %}">Login</a>
+				{%endif%}
+			</nav>
+		</header>
+		</header>
+		<p>Número de curriculos cadastrados:<span id="num_curriculos"></span></p>
+		{% for curriculo in curriculos %}
+			
+			<a href="{%url 'Curriculo' chavePrimaria=curriculo.pk%}">
+				<p>Nome: {{curriculo.nome}}</p>
+			</a>
+		{% endfor %}
+		<footer>
+			<a href="{% url 'contato' %}">Dúvidas e Sugestões</a>
+		</footer>
+	</body>
+</html>
